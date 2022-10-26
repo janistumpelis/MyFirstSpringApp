@@ -11,13 +11,13 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf()
-                .disable()
-                .authorizeRequests()
+        http
+                .csrf().disable() //disables CSRF protection
+                .authorizeRequests() //tells that path matchers will start
                 .antMatchers("/spring/**").anonymous() //everything under /spring without authentication
                 .anyRequest().authenticated() //everything else with authentication
                 .and()
-                .httpBasic();
+                .httpBasic(); //authentication type
 
         return http.build();
     }
