@@ -1,5 +1,6 @@
 package io.codelex.myfirstspringapp.users;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.codelex.myfirstspringapp.users.domain.User;
 import org.springframework.web.bind.annotation.*;
 

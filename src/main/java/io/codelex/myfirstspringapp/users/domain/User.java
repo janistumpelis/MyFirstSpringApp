@@ -3,16 +3,29 @@ package io.codelex.myfirstspringapp.users.domain;
 //DTO (data transfer object)
 public class User {
 
+    /*
+    JSON representation:
+    {
+        "id": 123,
+        "username": "john"
+    }
+
+    */
+
     private Long id;
 
     private String username;
+
+    public User() {
+
+    }
 
     public User(Long id, String username) {
         this.id = id;
         this.username = username;
     }
 
-    public Long getId() {
+    public Long getId() { //JSON => id: 123
         return id;
     }
 
@@ -20,7 +33,7 @@ public class User {
         this.id = id;
     }
 
-    public String getUsername() {
+    public String getUsername() { //JSON => username: 123
         return username;
     }
 

@@ -1,5 +1,6 @@
 package io.codelex.myfirstspringapp.users;
 
+import io.codelex.myfirstspringapp.config.MyApplicationConfig;
 import io.codelex.myfirstspringapp.users.domain.User;
 import org.springframework.stereotype.Service;
 
@@ -10,8 +11,12 @@ public class UserService {
 
     private UserRepository repository;
 
-    public UserService(UserRepository repository) {
+    private MyApplicationConfig myApplicationConfig;
+
+
+    public UserService(UserRepository repository, MyApplicationConfig myApplicationConfig) {
         this.repository = repository;
+        this.myApplicationConfig = myApplicationConfig;
     }
 
     public void saveUser(User user) {
@@ -37,7 +42,10 @@ public class UserService {
     }
 
     public String getGreetingMessage() {
-        return "Hello, this is user system!";
+        return myApplicationConfig.getGreeting() + " "
+                + myApplicationConfig.getName() + " "
+                + myApplicationConfig.getGoodbye() + " "
+                + myApplicationConfig.getLastGoodbye();
     }
 
 }
