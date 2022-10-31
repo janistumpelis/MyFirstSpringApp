@@ -3,7 +3,9 @@ package io.codelex.myfirstspringapp.users;
 import io.codelex.myfirstspringapp.config.MyApplicationConfig;
 import io.codelex.myfirstspringapp.users.domain.User;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -39,7 +41,7 @@ public class UserInMemoryService implements UserService {
     public User getUser(Long id) {
         return repository.getUserList()
                 .stream().filter(u -> u.getId().equals(id))
-                .findFirst().orElseThrow(() -> new RuntimeException("User not found!"));
+                .findFirst().orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Lietotājs nav atrasts!"));
     }
 
     private List<String> convertUsers(List<User> users) {
