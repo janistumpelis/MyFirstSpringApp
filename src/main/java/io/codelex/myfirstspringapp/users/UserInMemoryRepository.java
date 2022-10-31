@@ -6,13 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class UserRepository {
+public class UserInMemoryRepository {
 
     //Only for demo
     //Usually repository uses database
     private List<User> userList = new ArrayList<>();
 
-    public UserRepository() {
+    public UserInMemoryRepository() {
         //Also should not do this
         userList.add(new User(1L, "john"));
         userList.add(new User(2L, "peter"));
