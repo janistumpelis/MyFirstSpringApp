@@ -3,6 +3,7 @@ package io.codelex.myfirstspringapp.users;
 import io.codelex.myfirstspringapp.users.domain.User;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -19,8 +20,8 @@ public class UserController {
         return service.getUserList(usernameSearch);
     }
 
-    @PostMapping( "/user")
-    public void saveUser(@RequestBody User user) {
+    @PostMapping("/user")
+    public void saveUser(@RequestBody @Valid User user) {
         service.saveUser(user);
     }
 

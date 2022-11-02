@@ -1,5 +1,8 @@
 package io.codelex.myfirstspringapp.users.domain;
 
+import javax.validation.constraints.NotBlank;
+import java.util.Objects;
+
 //DTO (data transfer object)
 public class User {
 
@@ -14,6 +17,7 @@ public class User {
 
     private Long id;
 
+    @NotBlank
     private String username;
 
     public User() {
@@ -47,5 +51,18 @@ public class User {
                 "id=" + id +
                 ", username='" + username + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return id.equals(user.id) && username.equals(user.username);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, username);
     }
 }

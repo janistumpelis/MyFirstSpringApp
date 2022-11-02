@@ -25,6 +25,10 @@ public class UserInMemoryService implements UserService {
 
     @Override
     public void saveUser(User user) {
+        if (repository.getUserList().stream().anyMatch(u -> u.equals(user))) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "User already exists!");
+        }
+
         this.repository.saveUser(user);
     }
 
@@ -39,8 +43,7 @@ public class UserInMemoryService implements UserService {
 
     @Override
     public User getUser(Long id) {
-        return repository.getUserList()
-                .stream().filter(u -> u.getId().equals(id))
+        return repository.getUserList().stream().filter(u -> u.getId().equals(id))
                 .findFirst().orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Lietotājs nav atrasts!"));
     }
 
